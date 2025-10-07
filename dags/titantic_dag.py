@@ -1,5 +1,6 @@
 from airflow.decorators import task, dag
-from airflow.operators.dummy import DummyOperator
+# from airflow.operators.dummy import DummyOperator
+from airflow.operators.empty import EmptyOperator
 from airflow.operators.bash import BashOperator
 from datetime import datetime
 import pandas as pd
@@ -19,7 +20,7 @@ default_args = {
 def titanic_processing():
 
     # Task Definition
-    start = DummyOperator(task_id='start')
+    start = EmptyOperator(task_id='start')
 
     @task
     def first_task():
@@ -48,7 +49,7 @@ def titanic_processing():
         bash_command='echo "This is the last task performed with Bash."',
     )
 
-    end = DummyOperator(task_id='end')
+    end = EmptyOperator(task_id='end')
 
     # Orchestration
     first = first_task()
