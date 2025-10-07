@@ -11,7 +11,7 @@ default_args = {
 
 @dag(
     default_args=default_args,
-    schedule_internal="@once",  # ✅ correct spelling
+    schedule_interval="@once",  # ✅ correct spelling
     description="Simple Pipeline with Titanic",
     catchup=False,
     tags=['Titanic']
